@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+        <div class="container">
+      <h2>📋 TO-DO LIST</h2>
+
+      <div class="input-row">
+        <input type="text" id="taskInput" placeholder="Enter a task..." />
+        <button id="add">Add</button>
+      </div>
+
+      <ul id="taskList">
+        <li class="list-item">
+          <div class="task-left">
+            <input type="checkbox" class="task-check" />
+            <span class="task-text">Create TO-DO List</span>
+          </div>
+          <div class="task-right">
+            <button class="edit-btn">Edit</button>
+            <button class="delete-btn"><i class="fa-solid fa-xmark icon"></i></button>
+          </div>
+        </li>
+
+        <li class="list-item">
+          <div class="task-left">
+            <input type="checkbox" class="task-check" />
+            <span class="task-text">Space Bars</span>
+          </div>
+          <div class="task-right">
+            <button class="edit-btn">Edit</button>
+            <button class="delete-btn"><i class="fa-solid fa-xmark icon"></i></button>
+          </div>
+        </li>
+      </ul>
+
+      <p class="empty-msg" id="emptyMsg" style="display: none">
+        No tasks yet. Add one above!
+      </p>
+
+      <div class="event-log">
+        <h4>Operatins Performed</h4>
+        <div id="logPanel"></div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+      <script
+      src="https://kit.fontawesome.com/72a54f60b4.js"
+      crossorigin="anonymous"
+    ></script>
+</body>
+</html>
