@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>TO DO LIST</title>
 </head>
 <body>
-        <div class="container">
-      <h2>📋 TO-DO LIST</h2>
+  <div class="container">
+    <h2>📋 TO-DO LIST</h2>
 
-      <div class="input-row">
-        <input type="text" id="taskInput" placeholder="Enter a task..." />
-        <button id="add">Add</button>
-      </div>
+    <div class="input-row">
+      <input type="text" id="taskInput" placeholder="Enter a task…" />
+      <button id="add">Add</button>
+    </div>
 
+    <!-- <p class="task-counter" id="taskCounter">2 tasks</p> -->
+
+    <div class="task-list-wrapper" id="taskListWrapper">
       <ul id="taskList">
         <li class="list-item">
           <div class="task-left">
@@ -38,21 +41,19 @@
           </div>
         </li>
       </ul>
-
-      <p class="empty-msg" id="emptyMsg" style="display: none">
-        No tasks yet. Add one above!
-      </p>
-
-      <div class="event-log">
-        <h4>Operatins Performed</h4>
-        <div id="logPanel"></div>
-      </div>
     </div>
 
-    <script src="script.js"></script>
-      <script
-      src="https://kit.fontawesome.com/72a54f60b4.js"
-      crossorigin="anonymous"
-    ></script>
+    <p class="empty-msg" id="emptymessage" style="display: none">
+      No tasks yet. Add one above!
+    </p>
+
+    <div class="event-log">
+      <h4>Operations Performed</h4>
+      <div id="logPanel"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script src="https://kit.fontawesome.com/72a54f60b4.js" crossorigin="anonymous"></script>
 </body>
 </html>

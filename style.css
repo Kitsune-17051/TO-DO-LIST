@@ -20,6 +20,8 @@ body {
   width: 100%;
   max-width: 500px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
   height: fit-content;
 }
 
@@ -27,17 +29,19 @@ h2 {
   margin-bottom: 20px;
   color: #333;
   font-size: 1.4rem;
+  flex-shrink: 0;
 }
 
 .input-row {
   display: flex;
   gap: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 8px;
+  flex-shrink: 0;
 }
 
 input[type="text"] {
   flex: 1;
-  min-width: 0; 
+  min-width: 0;
   padding: 10px 14px;
   border: 2px solid #ddd;
   border-radius: 8px;
@@ -68,11 +72,55 @@ button {
   background: #574fd6;
 }
 
-ul {
+.task-counter {
+  font-size: 0.75rem;
+  color: #999;
+  text-align: right;
+  margin-bottom: 10px;
+  flex-shrink: 0;
+  min-height: 1em;
+}
+
+.task-list-wrapper {
+  max-height: 260px;
+  overflow-y: auto;
+  flex-shrink: 0;
+  border-radius: 8px;
+  padding-right: 4px;
+
+  scrollbar-width: thin;
+  scrollbar-color: #c5c0ff #f0f2f5;
+}
+
+.task-list-wrapper::-webkit-scrollbar {
+  width: 5px;
+}
+.task-list-wrapper::-webkit-scrollbar-track {
+  background: #f0f2f5;
+  border-radius: 99px;
+}
+.task-list-wrapper::-webkit-scrollbar-thumb {
+  background: #c5c0ff;
+  border-radius: 99px;
+}
+
+ul#taskList {
   list-style: none;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  padding-bottom: 4px;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .list-item {
@@ -82,10 +130,29 @@ ul {
   padding: 12px 16px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   gap: 8px;
-  transition: all 0.2s;
+  max-height: 80px;
+  overflow-y: auto;
+  transition:
+    background 0.2s,
+    border-color 0.2s;
+  animation: slideIn 0.18s ease;
+
+  scrollbar-width: thin;
+  scrollbar-color: #c5c0ff transparent;
 }
+
+/* .list-item::-webkit-scrollbar {
+  width: 4px;
+}
+.list-item::-webkit-scrollbar-track {
+  background: transparent;
+}
+.list-item::-webkit-scrollbar-thumb {
+  background: #c5c0ff;
+  border-radius: 99px;
+} */
 
 .list-item.highlight {
   background: #fff3cd;
@@ -97,7 +164,7 @@ ul {
   align-items: center;
   gap: 10px;
   flex: 1;
-  min-width: 0; 
+  min-width: 0;
 }
 
 .task-text {
@@ -107,9 +174,11 @@ ul {
 
 .task-right {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 6px;
   flex-shrink: 0;
+  position: sticky;
+  top: 0;
 }
 
 .delete-btn {
@@ -127,7 +196,6 @@ ul {
 .edit-btn {
   background-color: #5656cc;
   color: white;
-  margin-right: 0; 
   font-size: 0.8rem;
   padding: 8px 12px;
 }
@@ -146,15 +214,19 @@ ul {
   color: #2620a1;
   font-size: 0.95rem;
   padding: 20px 0;
+  flex-shrink: 0;
 }
 
 .event-log {
-  margin-top: 24px;
+  margin-top: 16px;
   background: #1e1e2e;
   border-radius: 8px;
   padding: 14px;
-  max-height: 160px;
+  max-height: 140px;
   overflow-y: auto;
+  flex-shrink: 0;
+  scrollbar-width: thin;
+  scrollbar-color: #444 #1e1e2e;
 }
 
 .event-log h4 {
@@ -198,7 +270,7 @@ ul {
 
 @media (max-width: 600px) {
   body {
-    padding: 20px 12px;
+    padding: 16px 12px;
   }
 
   .container {
@@ -208,7 +280,7 @@ ul {
 
   h2 {
     font-size: 1.2rem;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
   }
 
   button {
@@ -224,15 +296,20 @@ ul {
   .edit-btn {
     padding: 7px 10px;
   }
+
+  .task-list-wrapper {
+    max-height: 280px;
+  }
 }
 
 @media (max-width: 400px) {
   body {
-    padding: 12px 8px;
+    padding: 8px 6px;
   }
 
   .container {
-    padding: 16px 12px;
+    padding: 14px 10px;
+    border-radius: 8px;
   }
 
   .input-row {
@@ -247,17 +324,20 @@ ul {
     font-size: 0.75rem;
     padding: 7px 8px;
   }
-
   .delete-btn {
     padding: 7px 8px;
   }
 
   .list-item {
-    padding: 10px 12px;
+    padding: 10px 10px;
+  }
+
+  .task-list-wrapper {
+    max-height: 210px;
   }
 
   .event-log {
-    max-height: 130px;
+    max-height: 110px;
   }
 
   .log-entry {
@@ -269,8 +349,10 @@ ul {
   h2 {
     font-size: 1rem;
   }
-
   .task-text {
     font-size: 0.85rem;
+  }
+  .task-list-wrapper {
+    max-height: 170px;
   }
 }
